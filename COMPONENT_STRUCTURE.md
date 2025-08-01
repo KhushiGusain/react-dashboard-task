@@ -13,7 +13,7 @@ src/
 │   ├── LoadingSpinner.jsx # Loading state component
 │   └── ErrorDisplay.jsx  # Error state component
 ├── hooks/
-│   └── useBitcoinData.js # Custom hook for Bitcoin data fetching
+│   └── fetchData.js      # Custom hook for data fetching
 ├── utils/
 │   └── formatters.js     # Utility functions for data formatting
 └── App.jsx               # Main application component
@@ -100,12 +100,12 @@ src/
 
 ## 🎣 Custom Hooks
 
-### **useBitcoinData Hook** (`src/hooks/useBitcoinData.js`)
-- **Purpose**: Manages Bitcoin data fetching and processing
+### **fetchData Hook** (`src/hooks/fetchData.js`)
+- **Purpose**: Manages data fetching and processing
 - **Parameters**:
   - `refreshInterval`: Auto-refresh interval in milliseconds (default: 5 minutes)
 - **Returns**:
-  - `data`: Processed Bitcoin data
+  - `data`: Processed data
   - `loading`: Loading state
   - `error`: Error state
   - `lastUpdated`: Last update timestamp

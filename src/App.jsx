@@ -10,12 +10,12 @@ import {
   LoadingSpinner, 
   ErrorDisplay 
 } from './components'
-import { useBitcoinData } from './hooks/useBitcoinData'
+import { fetchData } from './hooks/fetchData'
 import { formatPrice, formatPercentage } from './utils/formatters'
 import './App.css'
 
 function App() {
-  const { data, loading, error, lastUpdated, fetchBitcoinData } = useBitcoinData()
+  const { data, loading, error, lastUpdated, fetchBitcoinData } = fetchData()
 
   if (loading) {
     return <LoadingSpinner />

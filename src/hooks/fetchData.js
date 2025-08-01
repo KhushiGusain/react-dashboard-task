@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export const useBitcoinData = (refreshInterval = 5 * 60 * 1000) => {
+export const fetchData = (refreshInterval = 5 * 60 * 1000) => {
   const [bitcoinData, setBitcoinData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
