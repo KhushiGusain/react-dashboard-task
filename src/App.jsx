@@ -2,14 +2,12 @@ import React from 'react'
 import { ImCoinDollar } from "react-icons/im"
 import { BsGraphUpArrow, BsGraphDownArrow } from "react-icons/bs"
 import { TbPercentage } from "react-icons/tb"
-import { 
-  Header, 
-  MetricCard, 
-  PriceChart, 
-  Footer, 
-  LoadingSpinner, 
-  ErrorDisplay 
-} from './components'
+import Header from './components/Header'
+import MetricCard from './components/MetricCard'
+import PriceChart from './components/PriceChart'
+import Footer from './components/Footer'
+import LoadingSpinner from './components/LoadingSpinner'
+import ErrorDisplay from './components/ErrorDisplay'
 import { fetchData } from './hooks/fetchData'
 import { formatPrice, formatPercentage } from './utils/formatters'
 import './App.css'

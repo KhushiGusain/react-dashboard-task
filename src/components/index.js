@@ -1,6 +1,0 @@
-export { default as Header } from './Header'
-export { default as MetricCard } from './MetricCard'
-export { default as PriceChart } from './PriceChart'
-export { default as Footer } from './Footer'
-export { default as LoadingSpinner } from './LoadingSpinner'
-export { default as ErrorDisplay } from './ErrorDisplay' 
