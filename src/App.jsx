@@ -5,25 +5,33 @@ import { TbPercentage } from "react-icons/tb"
 import Header from './components/Header'
 import MetricCard from './components/MetricCard'
 import PriceChart from './components/PriceChart'
+import MarketCapPieChart from './components/MarketCapPieChart'
 import Footer from './components/Footer'
 import LoadingSpinner from './components/LoadingSpinner'
 import ErrorDisplay from './components/ErrorDisplay'
 import { fetchData } from './hooks/fetchData'
+import { useGlobalMarketData } from './hooks/useGlobalMarketData'
 import { formatPrice, formatPercentage } from './utils/formatters'
 import './App.css'
 
 function App() {
   const { data, loading, error, lastUpdated, fetchBitcoinData } = fetchData()
+  const { 
+    data: pieChartData, 
+    loading: pieLoading, 
+    error: pieError, 
+    fetchGlobalData 
+  } = useGlobalMarketData()
 
-  if (loading) {
+  if (loading || pieLoading) {
     return <LoadingSpinner />
   }
 
-  if (error) {
-    return <ErrorDisplay error={error} onRetry={fetchBitcoinData} />
+  if (error || pieError) {
+    return <ErrorDisplay error={error || pieError} onRetry={fetchBitcoinData} />
   }
 
-  if (!data) {
+  if (!data || !pieChartData) {
     return (
       <div className="min-h-screen bg-[#10111a] flex items-center justify-center relative overflow-hidden">
         <div className="absolute inset-0 bg-[#10111a] opacity-90"></div>
@@ -33,7 +41,7 @@ function App() {
         <div className="text-center relative z-10">
           <div className="text-[#a098c7] text-4xl mb-4">📊</div>
           <h2 className="text-xl font-bold text-white mb-2">No Data Available</h2>
-          <p className="text-[#a098c7]">Unable to process Bitcoin data</p>
+          <p className="text-[#a098c7]">Unable to process cryptocurrency data</p>
         </div>
       </div>
     )
@@ -95,12 +103,21 @@ function App() {
           ))}
         </div>
 
-        {/* Price Chart */}
-        <PriceChart
-          data={data.prices}
-          onRefresh={fetchBitcoinData}
-          formatValue={(value) => `$${(value / 1000).toFixed(0)}k`}
-        />
+        {/* Charts Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+          {/* Price Chart */}
+          <PriceChart
+            data={data.prices}
+            onRefresh={fetchBitcoinData}
+            formatValue={(value) => `$${(value / 1000).toFixed(0)}k`}
+          />
+
+          {/* Market Cap Pie Chart */}
+          <MarketCapPieChart
+            data={pieChartData}
+            onRefresh={fetchGlobalData}
+          />
+        </div>
 
         {/* Footer */}
         <Footer lastUpdated={lastUpdated} />

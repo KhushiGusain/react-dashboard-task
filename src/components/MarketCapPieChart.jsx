@@ -1,15 +1,36 @@
 import React from 'react'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts'
 
-const PriceChart = ({ 
+const MarketCapPieChart = ({ 
   data, 
-  title = "Bitcoin Price Over Time", 
-  subtitle = "30-day performance analysis with real-time data",
-  onRefresh,
-  formatValue = (value) => `$${(value / 1000).toFixed(0)}k`,
-  strokeColor = "#10b981",
-  strokeWidth = 3
+  title = "Top 5 Cryptos by Market Cap", 
+  subtitle = "Market share distribution of leading cryptocurrencies",
+  onRefresh 
 }) => {
+  // Define colors for each crypto
+  const COLORS = ['#F7931A', '#627EEA', '#F3BA2F', '#2D3748', '#9945FF', '#6B7280']
+  
+  // Crypto names mapping
+  const cryptoNames = {
+    'bitcoin': 'BTC',
+    'ethereum': 'ETH', 
+    'binancecoin': 'BNB',
+    'ripple': 'XRP',
+    'solana': 'SOL',
+    'others': 'Others'
+  }
+
+  const formatMarketCap = (value) => {
+    if (value >= 1e12) return `$${(value / 1e12).toFixed(1)}T`
+    if (value >= 1e9) return `$${(value / 1e9).toFixed(1)}B`
+    if (value >= 1e6) return `$${(value / 1e6).toFixed(1)}M`
+    return `$${value.toLocaleString()}`
+  }
+
+  const formatPercentage = (value) => {
+    return `${value.toFixed(1)}%`
+  }
+
   return (
     <div className="bg-[#1b1d27]/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-xl border border-[#333543]/50 overflow-hidden">
       <div className="px-4 sm:px-8 py-4 sm:py-6 border-b border-[#333543]/30 bg-gradient-to-r from-[#10111a] to-[#1b1d27]">
@@ -39,24 +60,21 @@ const PriceChart = ({
       
       <div className="p-4 sm:p-8">
         <ResponsiveContainer width="100%" height={300} className="sm:h-[400px]">
-          <LineChart data={data} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#333543" strokeOpacity={0.2} />
-            <XAxis 
-              dataKey="date" 
-              tick={{ fill: '#a098c7', fontSize: 10 }}
-              angle={-45}
-              textAnchor="end"
-              height={60}
-              axisLine={false}
-              tickLine={false}
-            />
-            <YAxis 
-              tick={{ fill: '#a098c7', fontSize: 10 }}
-              domain={['dataMin - 1000', 'dataMax + 1000']}
-              tickFormatter={formatValue}
-              axisLine={false}
-              tickLine={false}
-            />
+          <PieChart>
+            <Pie
+              data={data}
+              cx="50%"
+              cy="50%"
+              labelLine={false}
+              label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+              outerRadius={80}
+              fill="#8884d8"
+              dataKey="value"
+            >
+              {data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
             <Tooltip 
               contentStyle={{ 
                 backgroundColor: '#1b1d27', 
@@ -66,22 +84,22 @@ const PriceChart = ({
                 fontSize: '12px',
                 color: '#ffffff'
               }}
-              formatter={(value) => [value, 'Price']}
-              labelFormatter={(label) => `Date: ${label}`}
+              formatter={(value, name) => [formatMarketCap(value), cryptoNames[name] || name]}
             />
-            <Line 
-              type="monotone" 
-              dataKey="price" 
-              stroke={strokeColor} 
-              strokeWidth={strokeWidth}
-              dot={false}
-              activeDot={{ r: 5, stroke: strokeColor, strokeWidth: 2, fill: '#ffffff' }}
+            <Legend 
+              verticalAlign="bottom" 
+              height={36}
+              wrapperStyle={{
+                paddingTop: '20px',
+                fontSize: '12px',
+                color: '#a098c7'
+              }}
             />
-          </LineChart>
+          </PieChart>
         </ResponsiveContainer>
       </div>
     </div>
   )
 }
 
-export default PriceChart 
+export default MarketCapPieChart 
