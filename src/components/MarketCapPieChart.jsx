@@ -7,10 +7,8 @@ const PieChart = ({
   subtitle = "Market share distribution of leading cryptocurrencies",
   onRefresh 
 }) => {
-  // Define modern colors that match the dashboard theme
   const COLORS = ['#a098c7', '#109173', '#F3BA2F', '#627EEA', '#9945FF', '#4A5568']
   
-  // Crypto names mapping
   const cryptoNames = {
     'bitcoin': 'BTC',
     'ethereum': 'ETH', 
@@ -31,10 +29,9 @@ const PieChart = ({
     return `${value.toFixed(1)}%`
   }
 
-  // Custom label renderer to prevent overlapping
   const renderCustomLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, name, index }) => {
     const RADIAN = Math.PI / 180
-    // Position labels outside the pie chart
+
     const radius = outerRadius + 20
     const x = cx + radius * Math.cos(-midAngle * RADIAN)
     const y = cy + radius * Math.sin(-midAngle * RADIAN)
@@ -44,7 +41,6 @@ const PieChart = ({
       return null
     }
     
-    // Get the color for this segment
     const segmentColor = COLORS[index % COLORS.length]
     
     return (

@@ -1,5 +1,6 @@
 import React from 'react'
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts'
+import RefreshButton from './RefreshButton'
 
 const PieChart = ({ 
   data, 
@@ -70,22 +71,7 @@ const PieChart = ({
             <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight truncate">{title}</h3>
             <p className="text-xs sm:text-sm text-[#a098c7] font-medium truncate">{subtitle}</p>
           </div>
-          {onRefresh && (
-            <button 
-              onClick={onRefresh}
-              className="inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#a098c7] to-[#8a7fb8] hover:from-[#8a7fb8] hover:to-[#7a6fa8] rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-0"
-            >
-              <lord-icon
-                src="https://cdn.lordicon.com/uewczsuz.json"
-                trigger="hover"
-                stroke="bold"
-                colors="primary:#a866ee,secondary:#121331"
-                style={{ width: '20px', height: '20px', marginRight: '6px' }}
-                className="sm:w-[20px] sm:h-[20px] sm:mr-2">
-              </lord-icon>
-              Refresh
-            </button>
-          )}
+          {onRefresh && <RefreshButton onClick={onRefresh} />}
         </div>
       </div>
       
