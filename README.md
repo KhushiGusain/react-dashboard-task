@@ -54,6 +54,10 @@ The dashboard follows a **component-based architecture** with custom hooks for d
 5. **Responsive Design**: Mobile-first approach with Tailwind CSS
 6. **Performance**: Optimized with Vite for fast development and builds
 
+## 🌐 Live Demo
+
+**View the live application:** [Cryptocurrency Dashboard](https://react-dashboard-task-e9wbicp3w-khushi-gusains-projects.vercel.app/)
+
 ## 🚀 How to Run Locally
 
 ### Prerequisites
