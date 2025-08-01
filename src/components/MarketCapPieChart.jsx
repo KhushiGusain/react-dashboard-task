@@ -89,7 +89,7 @@ const MarketCapPieChart = ({
         </div>
       </div>
       
-      <div className="p-4 sm:p-8">
+      <div className="p-4 sm:p-8 pb-8 sm:pb-12">
         <ResponsiveContainer width="100%" height={300} className="sm:h-[400px]">
           <PieChart>
             <Pie
@@ -108,12 +108,13 @@ const MarketCapPieChart = ({
             </Pie>
             <Tooltip 
               contentStyle={{ 
-                backgroundColor: '#1b1d27', 
+                backgroundColor: '#ffffff', 
                 border: '1px solid #333543',
                 borderRadius: '12px',
                 boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.5)',
                 fontSize: '12px',
-                color: '#ffffff'
+                color: '#1b1d27',
+                fontWeight: '600'
               }}
               formatter={(value, name) => [formatMarketCap(value), cryptoNames[name] || name]}
             />
@@ -125,6 +126,21 @@ const MarketCapPieChart = ({
                 fontSize: '12px',
                 color: '#a098c7'
               }}
+              content={({ payload }) => (
+                <div className="flex flex-wrap justify-center items-center gap-4 mt-4">
+                  {payload?.map((entry, index) => (
+                    <div key={entry.value} className="flex items-center space-x-2 bg-[#1b1d27]/50 backdrop-blur-sm rounded-lg px-3 py-2 border border-[#333543]/30 hover:bg-[#1b1d27]/70 transition-all duration-200">
+                      <div 
+                        className="w-3 h-3 rounded-full shadow-sm"
+                        style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                      />
+                      <span className="text-xs font-medium text-white capitalize tracking-wide">
+                        {cryptoNames[entry.value] || entry.value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
             />
           </PieChart>
         </ResponsiveContainer>
