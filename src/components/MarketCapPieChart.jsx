@@ -7,8 +7,8 @@ const MarketCapPieChart = ({
   subtitle = "Market share distribution of leading cryptocurrencies",
   onRefresh 
 }) => {
-  // Define colors for each crypto
-  const COLORS = ['#F7931A', '#627EEA', '#F3BA2F', '#2D3748', '#9945FF', '#6B7280']
+  // Define modern colors that match the dashboard theme
+  const COLORS = ['#a098c7', '#109173', '#F3BA2F', '#627EEA', '#9945FF', '#4A5568']
   
   // Crypto names mapping
   const cryptoNames = {
@@ -29,6 +29,37 @@ const MarketCapPieChart = ({
 
   const formatPercentage = (value) => {
     return `${value.toFixed(1)}%`
+  }
+
+  // Custom label renderer to prevent overlapping
+  const renderCustomLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, name, index }) => {
+    const RADIAN = Math.PI / 180
+    // Position labels outside the pie chart
+    const radius = outerRadius + 20
+    const x = cx + radius * Math.cos(-midAngle * RADIAN)
+    const y = cy + radius * Math.sin(-midAngle * RADIAN)
+    
+    // Only show labels for segments with > 5% to avoid clutter
+    if (percent < 0.05) {
+      return null
+    }
+    
+    // Get the color for this segment
+    const segmentColor = COLORS[index % COLORS.length]
+    
+    return (
+      <text 
+        x={x} 
+        y={y} 
+        fill={segmentColor} 
+        textAnchor={x > cx ? 'start' : 'end'} 
+        dominantBaseline="central"
+        fontSize="11"
+        fontWeight="600"
+      >
+        {`${name} ${(percent * 100).toFixed(0)}%`}
+      </text>
+    )
   }
 
   return (
@@ -66,7 +97,7 @@ const MarketCapPieChart = ({
               cx="50%"
               cy="50%"
               labelLine={false}
-              label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+              label={renderCustomLabel}
               outerRadius={80}
               fill="#8884d8"
               dataKey="value"
