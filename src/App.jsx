@@ -5,7 +5,7 @@ import { TbPercentage } from "react-icons/tb"
 import Header from './components/Header'
 import MetricCard from './components/MetricCard'
 import PriceChart from './components/PriceChart'
-import MarketCapPieChart from './components/MarketCapPieChart'
+import PieChart from './components/PieChart' // Updated import path
 import Footer from './components/Footer'
 import LoadingSpinner from './components/LoadingSpinner'
 import ErrorDisplay from './components/ErrorDisplay'
@@ -113,7 +113,7 @@ function App() {
           />
 
           {/* Market Cap Pie Chart */}
-          <MarketCapPieChart
+          <PieChart
             data={pieChartData}
             onRefresh={fetchGlobalData}
           />
