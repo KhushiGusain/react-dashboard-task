@@ -9,19 +9,19 @@ import PieChart from './components/PieChart' // Updated import path
 import Footer from './components/Footer'
 import LoadingSpinner from './components/LoadingSpinner'
 import ErrorDisplay from './components/ErrorDisplay'
-import { fetchData } from './hooks/fetchData'
-import { useGlobalMarketData } from './hooks/useGlobalMarketData'
+import { fetchChartData } from './hooks/fetchChartData'
+import { fetchPieData } from './hooks/fetchPieData'
 import { formatPrice, formatPercentage } from './utils/formatters'
 import './App.css'
 
 function App() {
-  const { data, loading, error, lastUpdated, fetchBitcoinData } = fetchData()
+  const { data, loading, error, lastUpdated, fetchBitcoinData } = fetchChartData()
   const { 
     data: pieChartData, 
     loading: pieLoading, 
     error: pieError, 
     fetchGlobalData 
-  } = useGlobalMarketData()
+  } = fetchPieData()
 
   if (loading || pieLoading) {
     return <LoadingSpinner />

@@ -32,20 +32,17 @@ const PieChart = ({
     return `${value.toFixed(1)}%`
   }
 
-  // Custom label renderer to prevent overlapping
   const renderCustomLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, name, index }) => {
     const RADIAN = Math.PI / 180
-    // Position labels outside the pie chart
+
     const radius = outerRadius + 20
     const x = cx + radius * Math.cos(-midAngle * RADIAN)
     const y = cy + radius * Math.sin(-midAngle * RADIAN)
     
-    // Only show labels for segments with > 5% to avoid clutter
     if (percent < 0.05) {
       return null
     }
     
-    // Get the color for this segment
     const segmentColor = COLORS[index % COLORS.length]
     
     return (

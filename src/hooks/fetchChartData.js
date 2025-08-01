@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export const fetchData = (refreshInterval = 5 * 60 * 1000) => {
+export const fetchChartData = (refreshInterval = 5 * 60 * 1000) => {
   const [bitcoinData, setBitcoinData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -26,12 +26,10 @@ export const fetchData = (refreshInterval = 5 * 60 * 1000) => {
 
   useEffect(() => {
     fetchBitcoinData()
-    // Refresh data every 5 minutes
     const interval = setInterval(fetchBitcoinData, refreshInterval)
     return () => clearInterval(interval)
   }, [refreshInterval])
 
-  // Process data for charts and metrics
   const processData = () => {
     if (!bitcoinData || !bitcoinData.prices) return null
 
