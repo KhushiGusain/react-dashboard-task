@@ -9,10 +9,10 @@ const Header = ({ lastUpdated, title = "Bitcoin Dashboard", subtitle = "Real-tim
             <div className="flex-shrink-0">
               <lord-icon
                 src="https://cdn.lordicon.com/rzhwlboq.json"
-                trigger="in"
-                delay="1500"
+                trigger="morph"
                 stroke="bold"
-                state="in-reveal"
+                state="morph-alone"
+                colors="primary:#121331,secondary:#ebe6ef,tertiary:#8930e8"
                 style={{ width: '70px', height: '70px' }}>
               </lord-icon>
             </div>
