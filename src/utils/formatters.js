@@ -1,3 +1,4 @@
+// Format price to USD
 export const formatPrice = (price) => {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -7,12 +8,13 @@ export const formatPrice = (price) => {
   }).format(price)
 }
 
-
+// Format percentage with sign
 export const formatPercentage = (value, decimals = 2) => {
   const sign = value >= 0 ? '+' : ''
   return `${sign}${value.toFixed(decimals)}%`
 }
 
+// Format date
 export const formatDate = (date) => {
   return new Date(date).toLocaleDateString('en-US', { 
     month: 'short', 
@@ -20,6 +22,7 @@ export const formatDate = (date) => {
   })
 }
 
+// Format timestamp to time
 export const formatTime = (timestamp) => {
   return new Date(timestamp).toLocaleTimeString()
 } 

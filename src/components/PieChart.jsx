@@ -8,10 +8,8 @@ const PieChart = ({
   subtitle = "Market share distribution of leading cryptocurrencies",
   onRefresh 
 }) => {
-  // Define modern colors that match the dashboard theme
   const COLORS = ['#a098c7', '#109173', '#F3BA2F', '#627EEA', '#9945FF', '#4A5568']
   
-  // Crypto names mapping
   const cryptoNames = {
     'bitcoin': 'BTC',
     'ethereum': 'ETH', 
@@ -38,7 +36,7 @@ const PieChart = ({
     const radius = outerRadius + 20
     const x = cx + radius * Math.cos(-midAngle * RADIAN)
     const y = cy + radius * Math.sin(-midAngle * RADIAN)
-    
+
     if (percent < 0.05) {
       return null
     }

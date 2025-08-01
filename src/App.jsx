@@ -9,8 +9,8 @@ import PieChart from './components/PieChart' // Updated import path
 import Footer from './components/Footer'
 import LoadingSpinner from './components/LoadingSpinner'
 import ErrorDisplay from './components/ErrorDisplay'
-import { fetchChartData } from './hooks/fetchChartData'
-import { fetchPieData } from './hooks/fetchPieData'
+import { fetchChartData } from './hooks/fetchChartData.js'
+import { fetchPieData } from './hooks/fetchPieData.js'
 import { formatPrice, formatPercentage } from './utils/formatters'
 import './App.css'
 

@@ -26,15 +26,18 @@ export const fetchPieData = (refreshInterval = 5 * 60 * 1000) => {
 
   useEffect(() => {
     fetchGlobalData()
+    // Refresh data every 5 minutes
     const interval = setInterval(fetchGlobalData, refreshInterval)
     return () => clearInterval(interval)
   }, [refreshInterval])
 
+  // Process data for pie chart
   const processPieChartData = () => {
     if (!globalData || !globalData.data) return null
 
     const { market_cap_percentage } = globalData.data
-
+    
+    // Get top 5 cryptos by market cap percentage
     const topCryptos = [
       { name: 'bitcoin', value: market_cap_percentage.btc || 0 },
       { name: 'ethereum', value: market_cap_percentage.eth || 0 },
@@ -43,6 +46,7 @@ export const fetchPieData = (refreshInterval = 5 * 60 * 1000) => {
       { name: 'solana', value: market_cap_percentage.sol || 0 }
     ]
 
+    // Calculate others (remaining percentage)
     const top5Total = topCryptos.reduce((sum, crypto) => sum + crypto.value, 0)
     const othersPercentage = Math.max(0, 100 - top5Total)
 
