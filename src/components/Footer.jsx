@@ -6,13 +6,13 @@ const Footer = ({
   lastUpdated 
 }) => {
   return (
-    <div className="mt-8">
-      <div className="bg-[#1b1d27]/80 backdrop-blur-sm rounded-lg p-4 border border-[#333543]/40">
+    <div className="mt-6 sm:mt-8">
+      <div className="bg-[#1b1d27]/80 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-[#333543]/40">
         <div className="flex flex-col items-center space-y-2">
-          <p className="text-sm font-medium text-white">{title}</p>
-          <p className="text-xs text-[#a098c7]">{subtitle}</p>
+          <p className="text-xs sm:text-sm font-medium text-white text-center">{title}</p>
+          <p className="text-xs text-[#a098c7] text-center">{subtitle}</p>
           {lastUpdated && (
-            <p className="text-xs text-[#666]">
+            <p className="text-xs text-[#666] text-center">
               Last updated: {lastUpdated.toLocaleTimeString()}
             </p>
           )}

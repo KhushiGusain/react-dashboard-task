@@ -31,17 +31,17 @@ const MetricCard = ({
   const currentColor = colorClasses[color] || colorClasses.emerald
 
   return (
-    <div className="bg-[#1b1d27]/95 backdrop-blur-sm rounded-2xl shadow-xl border border-[#333543]/50 p-6 hover:shadow-2xl transition-all duration-300 hover:bg-[#1b1d27] group">
-      <div className="flex items-center space-x-4">
-        <div className={`w-14 h-14 ${iconBgColor} backdrop-blur-sm rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 border ${iconBorderColor}`}>
-          <Icon className="text-2xl text-[#a098c7]" />
+    <div className="bg-[#1b1d27]/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-xl border border-[#333543]/50 p-4 sm:p-6 hover:shadow-2xl transition-all duration-300 hover:bg-[#1b1d27] group">
+      <div className="flex items-center space-x-3 sm:space-x-4">
+        <div className={`w-10 h-10 sm:w-14 sm:h-14 ${iconBgColor} backdrop-blur-sm rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 border ${iconBorderColor}`}>
+          <Icon className="text-lg sm:text-2xl text-[#a098c7]" />
         </div>
-        <div className="flex-1">
-          <p className={`text-xs font-semibold uppercase tracking-wide mb-2 ${currentColor.title}`}>
+        <div className="flex-1 min-w-0">
+          <p className={`text-xs font-semibold uppercase tracking-wide mb-1 sm:mb-2 ${currentColor.title}`}>
             {title}
           </p>
-          <p className="text-2xl font-bold text-white mb-1">{value}</p>
-          <p className={`text-xs font-medium ${currentColor.subtitle}`}>
+          <p className="text-lg sm:text-2xl font-bold text-white mb-1 truncate">{value}</p>
+          <p className={`text-xs font-medium ${currentColor.subtitle} truncate`}>
             {subtitle}
           </p>
         </div>
