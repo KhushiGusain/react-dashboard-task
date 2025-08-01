@@ -12,7 +12,7 @@ const Header = ({ lastUpdated, title = "Bitcoin Dashboard", subtitle = "Real-tim
                 trigger="morph"
                 stroke="bold"
                 state="morph-alone"
-                colors="primary:#121331,secondary:#ebe6ef,tertiary:#8930e8"
+                colors="primary:#121331,secondary:#ebe6ef,tertiary:#109173"
                 style={{ width: '70px', height: '70px' }}>
               </lord-icon>
             </div>
